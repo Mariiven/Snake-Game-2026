@@ -62,6 +62,14 @@
           margin: 15px auto;
         }
 
+        .tecla{
+          width: 50px;
+          height: 50px;
+          background-color: #667eea;
+          color: #F0F0F0;
+          border: none;
+        }
+
       </style>
   </head>
   
@@ -78,8 +86,10 @@
              <div class="recorde">
                    Recorde: <span id="recorde"> 0 </span>
              </div>
+
              <canvas id="canvas" width="400" height="400">
              </canvas>
+
              <div class="controles">
        
               <button onclick="iniciarJogo()">Iniciar Jogo</button>
@@ -87,14 +97,18 @@
               <button onclick="pausarJogo()">Pausar / Continuar</button>
 
              </div>
+
              <div class="teclas">
 
               <div class="tecla vazia"></div>
-              <div>&#9650;</div>
+
+              <div class="tecla">&#9650;</div>
+
               <div class="tecla vazia"></div>
-              <div>&#9668;</div>
-              <div>&#9660;</div>
-              <div>&#9658;</div>
+
+              <div class="tecla">&#9668;</div>
+              <div class="tecla">&#9660;</div>
+              <div class="tecla">&#9658;</div>
 
              </div>
         </div>
