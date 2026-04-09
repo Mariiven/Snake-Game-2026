@@ -139,13 +139,13 @@
 
               <div class="tecla vazio"></div>
 
-              <div class="tecla">&#9650;</div>
+              <div class="tecla" onclick="mudarDirecao ('cima')"> &#9650;</div>
 
               <div class="tecla vazio"></div>
 
-              <div class="tecla">&#9668;</div>
-              <div class="tecla">&#9660;</div>
-              <div class="tecla">&#9658;</div>
+              <div class="tecla" onclick="mudarDirecao ('esquerda')"> &#9668;</div>
+              <div class="tecla" onclick="mudarDirecao ('esquerda')"> &#9660;</div>
+              <div class="tecla" onclick="mudarDirecao ('baixo')"> &#9658;</div>
 
              </div>
 
@@ -157,7 +157,12 @@
              </div>
         </div>
     </div>
+
     <script>
+      function mudarDirecao(novaDirecao){
+        console.log(novaDirecao)
+      }
+
       function iniciarJogo(){
         console.log('Jogo Começou!');
       }
@@ -165,6 +170,7 @@
       function pausarJogo(){
         console.log('Pausa no Jogo!');
       }
+
     </script>
   </body>
 </html>
