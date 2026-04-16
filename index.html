@@ -117,11 +117,11 @@
 
         <div class="info">
              <div class="pontuacao">
-               Pontução: <span id="pontos"> 0 </span>
+               Pontução: <span id="pontos"> </span>
              </div>
 
              <div class="recorde">
-                   Recorde: <span id="recorde"> 0 </span>
+                   Recorde: <span id="recorde"> </span>
              </div>
 
              <canvas id="canvas" width="400" height="400">
@@ -159,7 +159,27 @@
     </div>
 
     <script>
+
       const canvas = document.getElementById('canvas');
+      const ctx = canvas.getContext('2d');
+
+      const tamanhoQuadrado = 20;
+
+      const quantidadeQuadrados = canvas.width / tamanhoQuadrado;
+
+      let cobra;
+      let direcao;
+      let proximaDirecao;
+      let comida;
+      let pontos;
+      let recorde;
+      let jogoAtivo;
+      let jogoPausado;
+      let intervaloJogo;
+
+      record = localStorage.getItem('recordeCobrinha') || 0;
+      document.getElementById('recorde').textContent = recorde;
+
       function mudarDirecao(novaDirecao){
         console.log(novaDirecao)
       }
