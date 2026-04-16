@@ -180,12 +180,18 @@
       record = localStorage.getItem('recordeCobrinha') || 0;
       document.getElementById('recorde').textContent = recorde;
 
+
+
       function mudarDirecao(novaDirecao){
         console.log(novaDirecao)
       }
 
       function iniciarJogo(){
-        console.log('Jogo Começou!');
+        cobra = [
+          { x: 10, y: 10},
+          { x: 9,  y: 10},
+          { x: 8,  y: 10},
+        ];
       }
 
       function pausarJogo(){
