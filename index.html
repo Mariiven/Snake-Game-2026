@@ -240,6 +240,30 @@
                 document.getElementById('pontos').textContent = pontos;
 
                 gerarComida();
+
+                if(intervaloJogo){
+                    clearInterval(intervaloJogo);
+                }
+
+                intervaloJogo = setInterval(atualizarJogo, 100);
+
+            }
+
+            function atualizarJogo(){
+                if(!jogoAtivo || jogoPausado){
+                    return;
+                }
+
+                direcao = proximaDirecao;
+                
+                let cabeca = {...cobra[0]}
+                
+                desenhar();
+            }
+             
+            function desenhar(){
+             ctx.fillStyle = '#f0f0f0';
+             ctx.fillRect(0, 0, canvas.width, canvas.height);
             }
 
             //=============================
@@ -267,8 +291,12 @@
                 }
             }
 
+            function atualizarJogo(){
+                console.log('atualizou');
+            }
+
             function mudarDirecao(novaDirecao){
-                console.log(novaDirecao)
+                proximaDirecao = novaDirecao;
             }
             
             function pausarJogo(){
