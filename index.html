@@ -367,17 +367,11 @@
             function mudarDirecao(novaDirecao){
                 if(novaDirecao === 'cima'   && direcao!== 'baixo'){
                     proximaDirecao = 'cima';
-                }
-
-                if(novaDirecao === 'baixo'   && direcao!== 'cima'){
+                }else if(novaDirecao === 'baixo'   && direcao!== 'cima'){
                     proximaDirecao = 'baixo';
-                }
-
-                if(novaDirecao === 'direita'   && direcao!== 'esquerda'){
+                }else if(novaDirecao === 'direita'   && direcao!== 'esquerda'){
                     proximaDirecao = 'direita';
-                }
-
-                if(novaDirecao === 'esquerda'   && direcao!== 'direita'){
+                }else if(novaDirecao === 'esquerda'   && direcao!== 'direita'){
                     proximaDirecao = 'esquerda';
                 }
             }
