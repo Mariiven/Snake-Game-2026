@@ -66,7 +66,7 @@
                 font-size: 16px;
                 cursor: pointer;
                 background-color: #28A745;
-                
+
                 padding: 12px 25px;
                 color: white;
                 border: none;
@@ -241,48 +241,65 @@
 
                 gerarComida();
 
+                //Limpar o intervalo anterior se existir
                 if(intervaloJogo){
                     clearInterval(intervaloJogo);
                 }
 
+                //executa a função atualizarJogo a cada 100 milisegundos
                 intervaloJogo = setInterval(atualizarJogo, 100);
-
             }
 
+
+            //===================================
+            // FUNÇÃO PRINCIPAL DO JOGO ( LOOP )
+            //===================================
             function atualizarJogo(){
-                if(!jogoAtivo || jogoPausado){
+               if(!jogoAtivo || jogoPausado){
                     return;
-                }
+               }
 
-                direcao = proximaDirecao;
+               direcao = proximaDirecao;
                 
-                let cabeca = {...cobra[0]}
-                
-                desenhar();
+               let cabeca = {...cobra[0]} 
+
+               //Mover a cabeça na direção atual
+               
+               desenhar();                
             }
-             
+
+            //=============================
+            //FUNÇÃO PARA DESENHAR OS ELEMENTOS VISUAIS DO JOGO
+            //=============================
             function desenhar(){
-             ctx.fillStyle = '#f0f0f0';
-             ctx.fillRect(0, 0, canvas.width, canvas.height);
+                // PASSO 1
+                //Limpar o fundo do Canvas
+                ctx.fillStyle = '#f0f0f0';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+                // PASSO 2
+                // Desenhar a grade (linhas de referência)
+                ctx.strokeStyle = '#e0e0e0';
+                ctx.lineWidth = 0.5;
 
+                for(let i = 0; i <= quantidadeQuadrados; i++){
+                        //Linha vertical
+                        ctx.beginPath();
+                        ctx.moveTo(i * tamanhoQuadrado, 0);
+                        ctx.lineTo(i * tamanhoQuadrado, canvas.height);
+                        ctx.stroke();
 
-             ctx.strokeStyle = '#e0e0e0';
-             ctx.lineWidth = 0.5;
+                        //Linha horizontal
+                        ctx.beginPath();
+                        ctx.moveTo(0, i * tamanhoQuadrado);
+                        ctx.lineTo(canvas.width, i * tamanhoQuadrado);
+                        ctx.stroke();
+                } 
 
-             for(let i = 0; i <= quantidadeQuadrados; i++){
-                ctx.beginPath();
-                ctx.moveTo(i * tamanhoQuadrado, 0);
-                ctx.lineTo(i * tamanhoQuadrado, canvas.height);
-                ctx.stroke();
+                
+               
 
-                ctx.beginPath();
-                ctx.moveTo(0, i * tamanhoQuadrado);
-                ctx.lineTo(canvas.width, i * tamanhoQuadrado);
-                ctx.stroke();
-             }
-
-             ctx.fill();
+                ctx.fill();
             }
 
             //=============================
@@ -309,7 +326,9 @@
                     }
                 }
             }
+
             function mudarDirecao(novaDirecao){
+                //bem aqui vai aparecer um bug
                 proximaDirecao = novaDirecao;
             }
             
