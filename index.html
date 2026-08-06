@@ -296,8 +296,45 @@
                         ctx.stroke();
                 } 
 
-                
-               
+                // ----- PASSO 3: Desenhar a cobra ---------------------
+                // forEach: outra forma de percorrer um array
+                // "Para cada pedaço da cobra, faça..."
+                cobra.forEach( (pedaco, indice) => {
+
+                    let cor_do_pedaco = '#4CAF50';
+                    if(indice === 0){
+                        cor_do_pedaco = '#2d5016';
+                    }
+                    ctx.fillStyle = cor_do_pedaco;
+
+                    ctx.fillRect(
+                        pedaco.x * tamanhoQuadrado + 1,
+                        pedaco.y * tamanhoQuadrado + 1,
+                        tamanhoQuadrado -2,
+                        tamanhoQuadrado -2
+                    );
+
+                    //Brilho (efeito de luz) - pequeno retangulo branco semi-transparente
+                    ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+                    ctx.fillRect(
+                        pedaco.x * tamanhoQuadrado + 2,
+                        pedaco.y * tamanhoQuadrado + 2,
+                        tamanhoQuadrado / 2,
+                        tamanhoQuadrado / 2
+                    );
+                });
+
+
+               //----  PASSO 4 - Desenhar a comida (círculo vermelho)
+               ctx.fillStyle = '#dc3545';
+               ctx.beginPath();
+               ctx.arc(
+                    comida.x * tamanhoQuadrado + tamanhoQuadrado / 2,
+                    comida.y * tamanhoQuadrado + tamanhoQuadrado / 2,
+                    tamanhoQuadrado / 2 - 2,
+                    0,
+                    Math.PI * 2
+               );
 
                 ctx.fill();
             }
