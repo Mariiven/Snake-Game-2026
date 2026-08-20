@@ -162,11 +162,10 @@
                 -->
 
             </canvas>
-
             <div  class="controles">
                 
-                <button onclick="iniciarJogo()">Iniciar Jogo</button>
-                <button onclick="pausarJogo()">Pausar / Continuar</button>
+                <button onclick="iniciarJogo();">Iniciar Jogo</button>
+                <button onclick="pause();">pausar / continuar</button>
 
             </div>
 
@@ -237,145 +236,91 @@
                 jogoAtivo = true;
                 jogoPausado = false;
 
-                document.getElementById('pontos').textContent = pontos;
-
+                document.getElementById ('pontos').textContent = pontos;
+                
                 gerarComida();
 
-                //Limpar o intervalo anterior se existir
+            //Limpar o intervalo anterior se existir
+
                 if(intervaloJogo){
                     clearInterval(intervaloJogo);
                 }
 
-                //executa a função atualizarJogo a cada 100 milisegundos
+
+            //======================================================
+            //Executa a função atualizarJogo a cada 100 milisegundos
+            //======================================================
+
+
                 intervaloJogo = setInterval(atualizarJogo, 100);
+
             }
+            
+            //===============================
+            //FUNÇÃO PRINCIPAL DO JOGO (LOOP)
+            //===============================
 
+                function atualizarJogo(){
+                    if(!jogoAtivo || jogoPausado){
+                        return;
+                    }
 
-            //===================================
-            // FUNÇÃO PRINCIPAL DO JOGO ( LOOP )
-            //===================================
-            function atualizarJogo(){
-               if(!jogoAtivo || jogoPausado){
-                    return;
-               }
+                    direcao = proximaDirecao;
 
-               direcao = proximaDirecao;
+                    let cabeca = {...cobra[0]}
+
                 
-               let cabeca = {...cobra[0]} 
 
-               //Mover a cabeça na direção atual
-               
-               desenhar();                
-            }
-
-            //=============================
-            //FUNÇÃO PARA DESENHAR OS ELEMENTOS VISUAIS DO JOGO
-            //=============================
-            function desenhar(){
-                // PASSO 1
-                //Limpar o fundo do Canvas
-                ctx.fillStyle = '#f0f0f0';
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-                // PASSO 2
-                // Desenhar a grade (linhas de referência)
-                ctx.strokeStyle = '#e0e0e0';
-                ctx.lineWidth = 0.5;
-
-                for(let i = 0; i <= quantidadeQuadrados; i++){
-                        //Linha vertical
-                        ctx.beginPath();
-                        ctx.moveTo(i * tamanhoQuadrado, 0);
-                        ctx.lineTo(i * tamanhoQuadrado, canvas.height);
-                        ctx.stroke();
-
-                        //Linha horizontal
-                        ctx.beginPath();
-                        ctx.moveTo(0, i * tamanhoQuadrado);
-                        ctx.lineTo(canvas.width, i * tamanhoQuadrado);
-                        ctx.stroke();
-                } 
-
-                // ----- PASSO 3: Desenhar a cobra ---------------------
-                // forEach: outra forma de percorrer um array
-                // "Para cada pedaço da cobra, faça..."
-                cobra.forEach( (pedaco, indice) => {
-
-                    let cor_do_pedaco = '#4CAF50';
-                    if(indice === 0){
-                        cor_do_pedaco = '#2d5016';
-                    }
-                    ctx.fillStyle = cor_do_pedaco;
-
-                    ctx.fillRect(
-                        pedaco.x * tamanhoQuadrado + 1,
-                        pedaco.y * tamanhoQuadrado + 1,
-                        tamanhoQuadrado -2,
-                        tamanhoQuadrado -2
-                    );
-
-                    //Brilho (efeito de luz) - pequeno retangulo branco semi-transparente
-                    ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
-                    ctx.fillRect(
-                        pedaco.x * tamanhoQuadrado + 2,
-                        pedaco.y * tamanhoQuadrado + 2,
-                        tamanhoQuadrado / 2,
-                        tamanhoQuadrado / 2
-                    );
-                });
-
-
-               //----  PASSO 4 - Desenhar a comida (círculo vermelho)
-               ctx.fillStyle = '#dc3545';
-               ctx.beginPath();
-               ctx.arc(
-                    comida.x * tamanhoQuadrado + tamanhoQuadrado / 2,
-                    comida.y * tamanhoQuadrado + tamanhoQuadrado / 2,
-                    tamanhoQuadrado / 2 - 2,
-                    0,
-                    Math.PI * 2
-               );
-
-                ctx.fill();
-            }
-
-            //=============================
-            //====FUNÇÃO PARA GERAR COMIDA
-            //=============================
-            function gerarComida(){
-                let posicaoValida = false;
-
-                while(!posicaoValida){
-                    //gera uma posição aleatória para a comida
-                    comida = {
-                        x : Math.floor(Math.random() * quantidadeQuadrados),
-                        y : Math.floor(Math.random() * quantidadeQuadrados)
-                    }
-
-                    //verificar se a comida não está em cima da cobra
-                    posicaoValida = true;
-                    
-                    for(let pedaco of cobra){
-                        if(comida.x === pedaco.x && comida.y === pedaco.y ){
-                            posicaoValida = false;
-                            break;
-                        }
-                    }
+                        //mover a cabeça na direção atual
+                    desenhar();
                 }
-            }
+
+                function desenhar(){
+                    //limpar o fundo do canvas
+                    ctx.fillStyle = '#000000';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+                    //desenhar a grade (opcional, para visualizção)
+                    ctx.strokeStyle = '#e0e0e';
+                    ctx.lineWidth = 0.5;
+
+                    ctx.fill();
+                }
+
+            
+
+            //==============================
+            //Função para gerar comida
+            //==============================
+               
+
+
+                 function gerarComida(){
+                    let posicaovalida = false
+                    while(!posicaovalida){
+                        comida = {
+                            x : Math.floor(Math.random() * quantidadeQuadrados),
+                            y : Math.floor(Math.random() * quantidadeQuadrados)
+                        }
+
+                        //verificar se a comida não está em cima da cobra
+                        posicaovalida = true;
+
+                        for(let pedaco of cobra){
+
+                            if(comida.x === pedaco.x && comida.y === pedaco.y){
+                                posicaovalida = false;
+                                break;
+                            }
+                        }
+                     }
+                  }
 
             function mudarDirecao(novaDirecao){
-                if(novaDirecao === 'cima'   && direcao!== 'baixo'){
-                    proximaDirecao = 'cima';
-                }else if(novaDirecao === 'baixo'   && direcao!== 'cima'){
-                    proximaDirecao = 'baixo';
-                }else if(novaDirecao === 'direita'   && direcao!== 'esquerda'){
-                    proximaDirecao = 'direita';
-                }else if(novaDirecao === 'esquerda'   && direcao!== 'direita'){
-                    proximaDirecao = 'esquerda';
-                }
+                //bem aqui vai aparecer um bug
+                proximaDirecao = novaDirecao;
             }
-
+            
             function pausarJogo(){
                 console.log('Pausa no Jogo!!')
             }
