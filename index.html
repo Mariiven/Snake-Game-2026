@@ -437,6 +437,10 @@
             }
             
             function pausarJogo(){
+                if(!jogoAtivo){
+                    return;
+                }
+                
                 pausarJogo = !pausarJogo;
 
                 if(pausarJogo === true){
