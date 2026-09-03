@@ -282,17 +282,17 @@
                         break;
                }
 
+               // verificar colisão com paredes (esquerda ou direita)
                if(cabeca.x < 0 || cabeca.x >= quantidadeQuadrados){
-                fimDeJogo();
-                return;
+                    fimDeJogo();
+                    return;
                }
 
-               if(cabeca.y < 0 || cabeca.y >= quantidadeQuadrados){
-                fimDeJogo();
-                return;
+               //verificar colisão com paredes (cima ou abaixo)
+                if(cabeca.y < 0 || cabeca.y >= quantidadeQuadrados){
+                    fimDeJogo();
+                    return;
                }
-
-
 
                // adiciona nova cabeça
                cobra.unshift(cabeca);
@@ -300,18 +300,25 @@
                cobra.pop();
                desenhar();                
             }
-
+            //============================
+            // FIM DE JOGO
+            //============================
             function fimDeJogo(){
-                jogoAtivo = false
+                jogoAtivo = false;
+                
                 clearInterval(intervaloJogo);
-                ctx.fillStyle = 'rgb(0, 0, 0, 0.7)';
+
+                //Desenhar mensagm de FIM DE JOGO
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
+
                 ctx.fillStyle = 'white';
                 ctx.font = 'bold 40px Arial';
                 ctx.textAlign = 'center';
                 ctx.fillText('FIM DE JOGO', canvas.width / 2, canvas.height / 2);
-                ctx.font ='20px Arial'
-                ctx.fillText(`pontuação: ${pontos}`, canvas.width / 2, (canvas.heigt) / 2);
+
+                ctx.font = '20px Arial';
+                ctx.fillText(`Pontuação: ${pontos}`, canvas.width / 2, (canvas.height / 2) + 50);
             }
 
             //=============================
