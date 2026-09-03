@@ -437,7 +437,13 @@
             }
             
             function pausarJogo(){
-                console.log('Pausa no Jogo!!')
+                pausarJogo = !pausarJogo;
+
+                if(pausarJogo === true){
+                    clearInterval(intervaloJogo);
+                }else{
+                    intervaloJogo = setInterval(atualizarJogo, 300);
+                }
             }
 
             document.addEventListener('keydown', function(event){
