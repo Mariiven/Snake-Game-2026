@@ -436,14 +436,14 @@
                 }
             }
             
-            function pausarJogo(){
+            function jogoPausado(){
                 if(!jogoAtivo){
                     return;
                 }
                 
-                pausarJogo = !pausarJogo;
+                jogoPausado = !jogoPausado;
 
-                if(pausarJogo === true){
+                if(jogoPausado === true){
                     clearInterval(intervaloJogo);
                 }else{
                     intervaloJogo = setInterval(atualizarJogo, 300);
@@ -466,7 +466,7 @@
                     mudarDirecao('direita')
                 }else if(event.key === ' '){
                     event.preventDefault();
-                    pausarJogo();
+                    jogoPausado();
                 }
             })
         </script>
