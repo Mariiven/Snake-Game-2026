@@ -298,6 +298,7 @@
                cobra.unshift(cabeca);
                if(cabeca.x === comida.x && cabeca.y === comida.y){
                 pontos = pontos + 1;
+                atualizarPainelPontos();
                 gerarComida();
                }else{
                 cobra.pop();
@@ -305,6 +306,18 @@
 
 
                desenhar();                
+            }
+
+            function atualizarPainelPontos(){
+                document.getElementById('pontos').textContent = pontos;
+                atualizarRecordePontuacao();
+            }
+
+            function atualizarRecordePontuacao(){
+                if( pontos > recorde){
+                    document.getElementById('recorde').textContent = pontos;
+                    localStorage.setItem('recordeCobrinha', pontos);
+                }
             }
 
             //============================
