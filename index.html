@@ -297,6 +297,7 @@
                // adiciona nova cabeça
                cobra.unshift(cabeca);
                if(cabeca.x === comida.x && cabeca.y === comida.y){
+                gerarComida();
                }else{
                 cobra.pop();
                }
@@ -304,7 +305,7 @@
 
                desenhar();                
             }
-            
+
             //============================
             // FIM DE JOGO
             //============================
