@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Devoradores de Estrelas</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+  <a class="voltar" href="../../">&larr; Voltar ao portal</a>
+  <h1>&#127775; Devoradores de Estrelas &#127775;</h1>
+
+  <div class="info">
+    <div class="pontuacao">Pontos<b id="pontos">0</b></div>
+    <div class="recorde">Recorde<b id="recorde">0</b></div>
+    <div class="nivel">Nível<b id="nivel">1</b></div>
+    <div class="combo">Combo<b id="combo">x1</b></div>
+  </div>
+
+  <canvas id="canvas" width="400" height="400" aria-label="Área do jogo"></canvas>
+
+  <div class="controles">
+    <select id="dificuldade" aria-label="Dificuldade">
+      <option value="facil">Fácil</option>
+      <option value="medio" selected>Médio</option>
+      <option value="dificil">Difícil</option>
+    </select>
+    <button onclick="iniciarJogo()">Iniciar</button>
+    <button onclick="pausarJogo()">Pausar</button>
+    <button id="btnSom" onclick="alternarSom()">&#128266;</button>
+  </div>
+
+  <div class="teclas">
+    <div class="tecla vazio"></div>
+    <button class="tecla" aria-label="Cima" onclick="mudarDirecao('cima')">&#9650;</button>
+    <div class="tecla vazio"></div>
+    <button class="tecla" aria-label="Esquerda" onclick="mudarDirecao('esquerda')">&#9668;</button>
+    <button class="tecla" aria-label="Baixo" onclick="mudarDirecao('baixo')">&#9660;</button>
+    <button class="tecla" aria-label="Direita" onclick="mudarDirecao('direita')">&#9658;</button>
+  </div>
+
+  <div class="instrucoes">
+    <h3>Como jogar</h3>
+    <p>Setas ou WASD movem, Espaço pausa, Enter inicia. No celular, deslize sobre o jogo.</p>
+    <p>Coma estrelas amarelas: quanto mais rápido a próxima, maior o combo (até x5).</p>
+    <p>A estrela rosa vale 50 pontos, mas some em pouco tempo.</p>
+    <p>A cada 5 estrelas você sobe de nível e o jogo acelera. No Difícil surgem obstáculos.</p>
+    <p>Fácil: as paredes são atravessáveis. Médio e Difícil: paredes matam.</p>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
